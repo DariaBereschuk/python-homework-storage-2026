@@ -1,5 +1,7 @@
+STANDARD_DELIMITER = ","
+
 if __name__ == "__main__":
-    str_list= input("Введите несколько строк через запятую\n").split(",")
+    str_list= list(st.strip() for st in input(f"Введите несколько строк через {STANDARD_DELIMITER}\n").split(STANDARD_DELIMITER))
     list_total_length = 0 #суммарная длина всех строк
     for st in str_list:
         list_total_length += len(st)

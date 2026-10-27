@@ -1,37 +1,18 @@
-
-
-STANDARD_DELIMITER = ","
-
-def str_or_not(smth):
-    smth = smth.strip()
-
-    if smth == "None":
+def int_or_not(*args):
+    ints = [a for a in args if type(a) is int]
+    if not ints:
         return None
-    if smth == "True":
-        return True
-    if smth == "False":
-        return False
-    try:
-        return int(smth)
-    except ValueError:
-        pass
-    try:
-        return float(smth)
-    except ValueError:
-        return smth
+    result = 1
+    for a in ints:
+        result *= a
+    return result
+
 
 if __name__ == "__main__":
-    args = input(f"Введите произвольное количество аргументов любых типов через {STANDARD_DELIMITER}\n").split(STANDARD_DELIMITER)
-    args_with_int = [ str_or_not(a) for a in args]
-    ints = [awi for awi in args_with_int if type(awi) is int]
-    if ints:
-        result = 1
-        for awi in ints:
-            result *= int(awi)
-        print(f"Произведение целочисленных аргементов:\n{result}")
+    args = ("йоу", 3.5, True, "слово")
+    result = int_or_not(*args)
+    if result:
+        print(f"Произведение целочисленных аргументов= {result}")
     else:
-        types_of_args = {}
-        for awi in args_with_int:
-            types_of_args[awi] = type(awi).__name__
-        print(f"В выших аргументах нет целочисленных аргументов, вот:\n{types_of_args}")
-
+        print(f"целых чисел нет, зато есть:")
+        print({a: type(a).__name__ for a in args})

@@ -19,13 +19,14 @@ if __name__ == "__main__":
             true_num=int(num)
         except ValueError:
             print("это не число")
-            break
+            continue
+        break
 
-        scenario = input("Введите 'р' если рекурсивно, 'и' если итеративно\n")
-        if scenario.lower() == "р":
-            print(f"Факториал числа {num} равен {factorial_rec(true_num)}")
-        elif scenario.lower() == "и":
-            print(f"Факториал числа {num} равен {factorial_iter(true_num)}")
-        else:
-            print("Режим не распознан. Используйте 'р' или 'и'.")
+    scenario = input("Введите 'р' если рекурсивно, 'и' если итеративно\n")
+    if scenario.lower() == "р":
+        print(f"Факториал числа {num} равен {factorial_rec(true_num)}")
+    elif scenario.lower() == "и":
+        print(f"Факториал числа {num} равен {factorial_iter(true_num)}")
+    else:
+        print("Режим не распознан. Используйте 'р' или 'и'.")
 
