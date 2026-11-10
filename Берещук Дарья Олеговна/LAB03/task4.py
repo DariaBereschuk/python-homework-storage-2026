@@ -1,22 +1,23 @@
-STANDARD_DELIMITER = " "
 from functools import reduce
+STANDARD_DELIMITER = " "
+
 
 if __name__ == "__main__":
     raw = input(f"Введите строки через {STANDARD_DELIMITER}\n").split(STANDARD_DELIMITER)
     long_words = list(filter(lambda r: len(r) >= 7, raw))
-    """оставляем только строки длиной 7 и более символов"""
+    #оставляем только строки длиной 7 и более символов
 
     print(f"Слова строки из >=7 символов:\n{long_words}")
 
-    pairs = list(map(lambda r: (r, len(r)), long_words))
-    """делаю картежи пар строка и ее длина"""
+    pairs = dict(map(lambda w: (w, len(w)), long_words))
+    print(f"Пары «строка — длина»:\n{pairs}")
 
-    print(f"Пары строка-длина:\n{pairs}")
+    #делаю словарь пар строка и ее длина
 
-    longest = reduce(lambda a, b: a if a[1] >= b[1] else b, pairs)
+    longest = max(pairs.items(), key=lambda x: x[1])
     print(f"Максимальная длина - {longest[1]}")
 
-    total_len = reduce(lambda total, lg: total + len(lg), long_words, 0)
-    """суммирую все длины"""
+    total_len = reduce(lambda total, length: total + length, pairs.values(), 0)
+    #суммирую все длины
 
     print(f"Суммарная длина = {total_len}")
